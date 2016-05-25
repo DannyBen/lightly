@@ -35,6 +35,7 @@ lightly = Lightly.new
 
 content = lightly.get 'key' do
   # Heavy operation here
+  entire_internet.download
 end
 ```
 
