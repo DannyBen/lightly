@@ -1,0 +1,9 @@
+require "runfile-tasks"
+require_relative 'lib/lightly'
+
+name    "Lightly Developer Toolbelt"
+summary "Runfile tasks for building the Lightly gem"
+version Lightly::VERSION
+
+RunfileTasks::RubyGems.all 'lightly'
+RunfileTasks::Testing.rspec
