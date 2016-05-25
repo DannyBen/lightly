@@ -11,14 +11,13 @@ class Lightly
     @enabled = true
   end
 
-  def with(key, &block)
+  def get(key, &block)
     return load key if cached?(key) && enabled?
 
     content = block.call
     save key, content if enabled?
     content
   end
-  alias_method :key, :with
 
   def flush
     return false if dir == '/' || dir.empty?
