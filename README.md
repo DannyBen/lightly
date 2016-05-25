@@ -73,6 +73,7 @@ lightly.cached? 'example'
 content = lightly.get 'example' do
   open('http://example.com').read
 end
+
 lightly.cached? 'example'
 # => true
 ```
