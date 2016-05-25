@@ -33,8 +33,9 @@ require 'lightly'
 
 lightly = Lightly.new
 
-content = lightly.with 'key' do
+content = lightly.get 'key' do
   # Heavy operation here
+  entire_internet.download
 end
 ```
 
@@ -69,9 +70,10 @@ lightly = Lightly.new
 lightly.cached? 'example'
 # => false
 
-content = lightly.with 'example' do
+content = lightly.get 'example' do
   open('http://example.com').read
 end
+
 lightly.cached? 'example'
 # => true
 ```
@@ -84,16 +86,19 @@ lightly.disable
 lightly.enabled? 
 # => false
 
-content = lightly.with 'example' do
+content = lightly.get 'example' do
   open('http://example.com').read
 end
+
 lightly.cached? 'example'
 # => false
 
 lightly.enable
-content = lightly.with 'example' do
+
+content = lightly.get 'example' do
   open('http://example.com').read
 end
+
 lightly.cached? 'example'
 # => true
 ```
@@ -103,16 +108,6 @@ To flush the cache, call:
 ```ruby
 lightly = Lightly.new
 lightly.flush
-```
-
-The `key` method is an alias to `with`, if you prefer a different wording:
-
-```ruby
-cache = Lightly.new
-
-content = cache.key 'example' do
-  # Heavy operation here
-end
 ```
 
 ---
