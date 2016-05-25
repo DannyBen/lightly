@@ -23,49 +23,43 @@ describe Lightly do
     end
   end
 
-  describe '#with' do
+  describe '#get' do
     it "skips caching if disabled" do
       lightly.disable
-      lightly.with('key') { 'content' }
+      lightly.get('key') { 'content' }
       expect(Dir['cache/*']).to be_empty      
     end
 
     it "creates a cache folder" do
       expect(Dir).not_to exist 'cache'
-      lightly.with('key') { 'content' }
+      lightly.get('key') { 'content' }
       expect(Dir).to exist 'cache'
     end
 
     it "saves a file" do
-      lightly.with('key') { 'content' }
+      lightly.get('key') { 'content' }
       expect(Dir['cache/*']).not_to be_empty
     end
 
     it "loads from cache" do
-      lightly.with('key') { 'content' }
+      lightly.get('key') { 'content' }
       expect(lightly).to be_cached 'key'
       expect(lightly).to receive(:load)
-      lightly.with('key') { 'new, irrelevant content' }
+      lightly.get('key') { 'new, irrelevant content' }
     end
 
     it "returns content from cache" do
-      lightly.with('key') { 'content' }
+      lightly.get('key') { 'content' }
       expect(lightly).to be_cached 'key'
-      content = lightly.with('key') { 'new, irrelevant content' }
+      content = lightly.get('key') { 'new, irrelevant content' }
       expect(content).to eq 'content'
-    end
-  end
-
-  describe '#key' do
-    it "behaves like #with" do
-      expect(lightly.method(:key)).to eq lightly.method(:with)
     end
   end
 
   describe '#cached?' do
     context 'with a cached key' do
       it "returns true" do
-        lightly.with('key') { 'content' }
+        lightly.get('key') { 'content' }
         expect(lightly).to be_cached 'key'
       end
     end
