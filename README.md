@@ -98,6 +98,13 @@ lightly.cached? 'example'
 # => true
 ```
 
+To flush the cache, call:
+
+```ruby
+lightly = Lightly.new
+lightly.flush
+```
+
 The `key` method is an alias to `with`, if you prefer a different wording:
 
 ```ruby

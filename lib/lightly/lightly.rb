@@ -29,17 +29,17 @@ class Lightly
     @enabled
   end
 
+  def cached?(key)
+    path = get_path key
+    File.exist? path and !expired? path
+  end
+
   def enable
     @enabled = true
   end
 
   def disable
     @enabled = false
-  end
-
-  def cached?(key)
-    path = get_path key
-    File.exist? path and !expired? path
   end
 
   private
