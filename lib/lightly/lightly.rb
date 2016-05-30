@@ -30,7 +30,7 @@ class Lightly
 
   def cached?(key)
     path = get_path key
-    File.exist? path and !expired? path
+    File.exist?(path) and !expired?(path)
   end
 
   def enable
