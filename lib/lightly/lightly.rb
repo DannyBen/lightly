@@ -30,7 +30,7 @@ class Lightly
 
   def cached?(key)
     path = get_path key
-    File.exist?(path) and !expired?(path)
+    File.exist?(path) and File.size(path) > 0 and !expired?(path)
   end
 
   def enable
@@ -39,6 +39,11 @@ class Lightly
 
   def disable
     @enabled = false
+  end
+
+  def get_path(key)
+    key = Digest::MD5.hexdigest(key) if hash
+    File.join dir, key
   end
 
   private
@@ -53,11 +58,6 @@ class Lightly
 
   def load(key)
     Marshal.load File.binread(get_path key)
-  end
-
-  def get_path(key)
-    key = Digest::MD5.hexdigest(key) if hash
-    File.join dir, key
   end
 
   def expired?(path)

@@ -69,6 +69,18 @@ describe Lightly do
         expect(lightly).not_to be_cached 'key'
       end
     end
+
+    context 'with an empty cache file' do
+      it "returns false" do
+        lightly.get('key') { 'content' }
+        expect(lightly).to be_cached 'key'
+        path = lightly.get_path 'key'
+        File.write path, ''
+        expect(File.size path).to eq 0
+
+        expect(lightly).not_to be_cached 'key'
+      end
+    end
   end
 
   describe '#enable' do
