@@ -27,7 +27,7 @@ describe Lightly do
     it "skips caching if disabled" do
       lightly.disable
       lightly.get('key') { 'content' }
-      expect(Dir['cache/*']).to be_empty      
+      expect(Dir['cache/*']).to be_empty
     end
 
     it "creates a cache folder" do
@@ -53,6 +53,28 @@ describe Lightly do
       expect(lightly).to be_cached 'key'
       content = lightly.get('key') { 'new, irrelevant content' }
       expect(content).to eq 'content'
+    end
+  end
+
+  describe '#clear' do
+    context "with an existing key" do
+      before do
+        lightly.flush
+        lightly.get('key') { 'content' }    
+        expect(Dir['cache/*']).not_to be_empty
+      end
+
+
+      it "deletes the cache file" do
+        lightly.clear 'key'
+        expect(Dir['cache/*']).to be_empty
+      end
+    end
+
+    context "with a non existing key" do
+      it "does not raise an error" do
+        expect{lightly.clear 'im not there'}.not_to raise_error
+      end
     end
   end
 
