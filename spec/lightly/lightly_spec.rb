@@ -83,6 +83,18 @@ describe Lightly do
     end
   end
 
+  describe '#flush' do
+    before do
+      lightly.get('key') { 'content' }    
+      expect(Dir).to exist 'cache'
+    end
+
+    it "deletes all files from the cache folder" do
+      lightly.flush
+      expect(Dir).not_to exist 'cache'
+    end
+  end
+
   describe '#enable' do
     it "enables cache handling" do
       lightly.enable
