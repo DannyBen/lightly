@@ -19,6 +19,11 @@ class Lightly
     content
   end
 
+  def clear(key)
+    path = get_path key
+    FileUtils.rm path if File.exist? path
+  end
+
   def flush
     return false if dir == '/' || dir.empty?
     FileUtils.rm_rf dir

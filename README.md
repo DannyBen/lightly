@@ -110,6 +110,13 @@ lightly = Lightly.new
 lightly.flush
 ```
 
+To clear the cache for a given key, call:
+
+```ruby
+lightly = Lightly.new
+lightly.clear 'example'
+```
+
 ---
 
 For a similar gem that provides caching specifically for HTTP downloads,
