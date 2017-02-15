@@ -30,6 +30,12 @@ describe Lightly do
       expect(Dir['cache/*']).to be_empty
     end
 
+    it "skips caching if block returns false" do
+      lightly.get('key') { false }
+      expect(Dir['cache/*']).to be_empty
+      expect(lightly.cached? 'key').to be false
+    end
+
     it "creates a cache folder" do
       expect(Dir).not_to exist 'cache'
       lightly.get('key') { 'content' }
