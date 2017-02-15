@@ -15,7 +15,7 @@ class Lightly
     return load key if cached?(key) && enabled?
 
     content = block.call
-    save key, content if enabled?
+    save key, content if content && enabled?
     content
   end
 

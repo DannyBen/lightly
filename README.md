@@ -117,6 +117,17 @@ lightly = Lightly.new
 lightly.clear 'example'
 ```
 
+If your block returns false or nil, the data will not be cached:
+
+```ruby
+result = cache.get 'test' do
+  false
+end
+
+puts cache.cached? 'test'
+# => false
+```
+
 ---
 
 For a similar gem that provides caching specifically for HTTP downloads,
