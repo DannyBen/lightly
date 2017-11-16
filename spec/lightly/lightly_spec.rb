@@ -70,7 +70,6 @@ describe Lightly do
         expect(Dir['cache/*']).not_to be_empty
       end
 
-
       it "deletes the cache file" do
         lightly.clear 'key'
         expect(Dir['cache/*']).to be_empty
@@ -134,6 +133,13 @@ describe Lightly do
     it "disables cache handling" do
       lightly.disable
       expect(lightly).not_to be_enabled
+    end
+  end
+
+  describe '#save' do
+    it "saves a file" do
+      lightly.save('key', 'content')
+      expect(Dir['cache/*']).not_to be_empty
     end
   end
 
