@@ -51,8 +51,6 @@ class Lightly
     File.join dir, key
   end
 
-  private
-
   def save(key, content)
     FileUtils.mkdir_p dir
     path = get_path key
@@ -60,6 +58,8 @@ class Lightly
       f.write Marshal.dump content
     end
   end
+  
+  private
 
   def load(key)
     Marshal.load File.binread(get_path key)
