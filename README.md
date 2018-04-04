@@ -4,7 +4,6 @@ Lightly - Ruby File Cache
 [![Gem](https://img.shields.io/gem/v/lightly.svg?style=flat-square)](https://rubygems.org/gems/lightly)
 [![Travis](https://img.shields.io/travis/DannyBen/lightly.svg?style=flat-square)](https://travis-ci.org/DannyBen/lightly)
 [![Maintainability](https://img.shields.io/codeclimate/maintainability/DannyBen/lightly.svg?style=flat-square)](https://codeclimate.com/github/DannyBen/lightly)
-[![Issues](https://img.shields.io/codeclimate/issues/DannyBen/lightly.svg?style=flat-square)](https://codeclimate.com/github/DannyBen/lightly)
 [![Gemnasium](https://img.shields.io/gemnasium/DannyBen/lightly.svg?style=flat-square)](https://gemnasium.com/DannyBen/lightly)
 
 ---
