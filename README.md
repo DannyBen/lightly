@@ -1,10 +1,10 @@
 Lightly - Ruby File Cache
 ==================================================
 
-[![Gem](https://img.shields.io/gem/v/lightly.svg?style=flat-square)](https://rubygems.org/gems/lightly)
-[![Travis](https://img.shields.io/travis/DannyBen/lightly.svg?style=flat-square)](https://travis-ci.org/DannyBen/lightly)
-[![Maintainability](https://img.shields.io/codeclimate/maintainability/DannyBen/lightly.svg?style=flat-square)](https://codeclimate.com/github/DannyBen/lightly)
-[![Gemnasium](https://img.shields.io/gemnasium/DannyBen/lightly.svg?style=flat-square)](https://gemnasium.com/DannyBen/lightly)
+[![Gem Version](https://badge.fury.io/rb/lightly.svg)](https://badge.fury.io/rb/lightly)
+[![Build Status](https://travis-ci.org/DannyBen/lightly.svg?branch=master)](https://travis-ci.org/DannyBen/lightly)
+[![Maintainability](https://api.codeclimate.com/v1/badges/8296395c9a332a15afc7/maintainability)](https://codeclimate.com/github/DannyBen/lightly/maintainability)
+[![Test Coverage](https://api.codeclimate.com/v1/badges/8296395c9a332a15afc7/test_coverage)](https://codeclimate.com/github/DannyBen/lightly/test_coverage)
 
 ---
 
