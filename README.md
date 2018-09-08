@@ -28,6 +28,33 @@ gem 'lightly'
 Usage
 --------------------------------------------------
 
+Lightly can be used both as an instance, and as a static class.
+
+```ruby
+require 'lightly'
+
+# Instance
+cache = Lightly.new life: '3h'
+response = cache.get 'key' do
+  # Heavy operation here
+end
+
+# Static
+Lightly.life = '3h'
+Lightly.get 'key' do
+  # Heavy operation here
+end
+```
+
+The design intention is to provide both a globally available singleton
+`Lightly` object, as well as multiple caching instances, with different
+settings - depending on the use case.
+
+Note that the examples in this README are all using the instance syntax, but
+all methods are also available statically.
+
+This is the basic usage pattern:
+
 ```ruby
 require 'lightly'
 
@@ -59,8 +86,18 @@ Or later:
 ```ruby
 lightly = Lightly.new
 lightly.dir = 'tmp/my_cache'
-lightly.life = 7200 # seconds
+lightly.life = '1d'
 lightly.hash = false
+```
+
+The `life` property accepts any of these formats:
+
+```ruby
+cache.life = 10     # 10 seconds
+cache.life = '20s'  # 20 seconds
+cache.life = '10m'  # 10 minutes
+cache.life = '10h'  # 10 hours
+cache.life = '10d'  # 10 days
 ```
 
 To check if a key is cached, use the `cached?` method:

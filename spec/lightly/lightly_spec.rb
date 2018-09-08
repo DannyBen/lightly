@@ -12,14 +12,14 @@ describe Lightly do
       expect(lightly).to be_enabled
       expect(lightly.life).to eq 3600
       expect(lightly.dir).to eq 'cache'
-      expect(lightly.hash).to be true
+      expect(lightly.hash?).to be true
     end
 
     it "accepts initialization properties" do
       lightly = Lightly.new dir: 'store', life: 120, hash: false
       expect(lightly.life).to eq 120
       expect(lightly.dir).to eq 'store'
-      expect(lightly.hash).to be false
+      expect(lightly.hash?).to be false
     end
   end
 
@@ -140,6 +140,33 @@ describe Lightly do
     it "saves a file" do
       lightly.save('key', 'content')
       expect(Dir['cache/*']).not_to be_empty
+    end
+  end
+
+  describe '#life=' do
+    it "handles plain numbers" do
+      subject.life = 11
+      expect(subject.life).to eq 11
+    end
+
+    it "handles 11s as seconds" do
+      subject.life = '11s'
+      expect(subject.life).to eq 11
+    end
+
+    it "handles 11m as minutes" do
+      subject.life = '11m'
+      expect(subject.life).to eq 11 * 60
+    end
+
+    it "handles 11h as hours" do
+      subject.life = '11h'
+      expect(subject.life).to eq 11 * 60 * 60
+    end
+
+    it "handles 11d as days" do
+      subject.life = '11d'
+      expect(subject.life).to eq 11 * 60 * 60 * 24
     end
   end
 
