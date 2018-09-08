@@ -64,7 +64,7 @@ class Lightly
     end
 
     def get_path(key)
-      key = Digest::MD5.hexdigest(key) if hash
+      key = Digest::MD5.hexdigest(key) if hash?
       File.join dir, key
     end
 
