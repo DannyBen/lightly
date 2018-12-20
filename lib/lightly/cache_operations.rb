@@ -50,6 +50,11 @@ class Lightly
       FileUtils.rm_rf dir
     end
 
+    def prune
+      return false if dir == '/' || dir.empty?
+      Dir["#{dir}/*"].each { |file| expired? file }
+    end
+
     def cached?(key)
       path = get_path key
       File.exist?(path) and File.size(path) > 0 and !expired?(path)
@@ -76,14 +81,14 @@ class Lightly
       end
     end
     
-    private
+  private
 
     def load(key)
       Marshal.load File.binread(get_path key)
     end
 
     def expired?(path)
-      expired = life > 0 && File.exist?(path) && Time.new - File.mtime(path) >= life
+      expired = life > 0 && File.exist?(path) && Time.now - File.mtime(path) >= life
       FileUtils.rm path if expired
       expired
     end
