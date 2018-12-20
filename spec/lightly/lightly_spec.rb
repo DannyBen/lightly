@@ -123,8 +123,8 @@ describe Lightly do
 
   describe '#prune' do
     before do
-      subject.get('key1')  { 'content' }    
-      subject.get('key2') { 'content' }    
+      subject.get('key1') { 'content' }
+      subject.get('key2') { 'content' }
       expect(subject).to be_cached('key1')
       expect(subject).to be_cached('key2')
       FileUtils.touch subject.get_path('key1'), mtime: Time.now - 86400
