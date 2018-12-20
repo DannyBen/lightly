@@ -154,6 +154,13 @@ lightly = Lightly.new
 lightly.clear 'example'
 ```
 
+To clear all expired keys, call:
+
+```ruby
+lightly = Lightly.new
+lightly.prune
+```
+
 If your block returns false or nil, the data will not be cached:
 
 ```ruby
