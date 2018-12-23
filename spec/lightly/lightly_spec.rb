@@ -121,6 +121,22 @@ describe Lightly do
     end
   end
 
+  describe '#prune' do
+    before do
+      subject.get('key1') { 'content' }
+      subject.get('key2') { 'content' }
+      expect(subject).to be_cached('key1')
+      expect(subject).to be_cached('key2')
+      FileUtils.touch subject.get_path('key1'), mtime: Time.now - 86400
+    end
+
+    it "deletes all the expired cache files from the cache folder" do
+      subject.prune
+      expect(subject).not_to be_cached('key1')
+      expect(subject).to be_cached('key2')
+    end
+  end
+
   describe '#enable' do
     it "enables cache handling" do
       subject.enable
