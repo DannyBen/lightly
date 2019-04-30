@@ -4,7 +4,6 @@ Lightly - Ruby File Cache
 [![Gem Version](https://badge.fury.io/rb/lightly.svg)](https://badge.fury.io/rb/lightly)
 [![Build Status](https://travis-ci.com/DannyBen/lightly.svg?branch=master)](https://travis-ci.com/DannyBen/lightly)
 [![Maintainability](https://api.codeclimate.com/v1/badges/8296395c9a332a15afc7/maintainability)](https://codeclimate.com/github/DannyBen/lightly/maintainability)
-[![Test Coverage](https://api.codeclimate.com/v1/badges/8296395c9a332a15afc7/test_coverage)](https://codeclimate.com/github/DannyBen/lightly/test_coverage)
 
 ---
 
