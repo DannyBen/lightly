@@ -49,8 +49,8 @@ The design intention is to provide both a globally available singleton
 `Lightly` object, as well as multiple caching instances, with different
 settings - depending on the use case.
 
-Note that the examples in this README are all using the instance syntax, but
-all methods are also available statically.
+Note that the examples in this document are all using the instance syntax,
+but all methods are also available statically.
 
 This is the basic usage pattern:
 
@@ -160,7 +160,7 @@ lightly = Lightly.new
 lightly.prune
 ```
 
-If your block returns false or nil, the data will not be cached:
+If your block returns `false` or `nil`, the data will not be cached:
 
 ```ruby
 result = cache.get 'test' do
@@ -171,10 +171,19 @@ puts cache.cached? 'test'
 # => false
 ```
 
----
+Contributing / Support
+--------------------------------------------------
+
+If you experience any issue, have a question or a suggestion, or if you wish
+to contribute, feel free to [open an issue][issues].
+
+
+Related Projects
+--------------------------------------------------
 
 For a similar gem that provides caching specifically for HTTP downloads,
-see the [WebCache gem][1]
+see the [WebCache gem][webcache].
 
 
-[1]: https://github.com/DannyBen/webcache
+[webcache]: https://github.com/DannyBen/webcache
+[issues]: https://github.com/DannyBen/lightly/issues
