@@ -1,5 +1,4 @@
-Lightly - Ruby File Cache
-==================================================
+# Lightly - Ruby File Cache
 
 [![Gem Version](https://badge.fury.io/rb/lightly.svg)](https://badge.fury.io/rb/lightly)
 [![Build Status](https://github.com/DannyBen/lightly/workflows/Test/badge.svg)](https://github.com/DannyBen/lightly/actions?query=workflow%3ATest)
@@ -11,10 +10,9 @@ Lightly is a file cache for performing heavy tasks, lightly.
 
 ---
 
-Install
---------------------------------------------------
+## Install
 
-```
+```shell
 $ gem install lightly
 ```
 
@@ -24,8 +22,7 @@ Or with bundler:
 gem 'lightly'
 ```
 
-Usage
---------------------------------------------------
+## Usage
 
 Lightly can be used both as an instance, and as a static class.
 
@@ -33,14 +30,14 @@ Lightly can be used both as an instance, and as a static class.
 require 'lightly'
 
 # Instance
-cache = Lightly.new life: '3h'
-response = cache.get 'key' do
+lightly = Lightly.new life: '3h'
+response = lightly.get 'key' do
   # Heavy operation here
 end
 
 # Static
 Lightly.life = '3h'
-Lightly.get 'key' do
+response = Lightly.get 'key' do
   # Heavy operation here
 end
 ```
@@ -92,11 +89,11 @@ lightly.hash = false
 The `life` property accepts any of these formats:
 
 ```ruby
-cache.life = 10     # 10 seconds
-cache.life = '20s'  # 20 seconds
-cache.life = '10m'  # 10 minutes
-cache.life = '10h'  # 10 hours
-cache.life = '10d'  # 10 days
+lightly.life = 10     # 10 seconds
+lightly.life = '20s'  # 20 seconds
+lightly.life = '10m'  # 10 minutes
+lightly.life = '10h'  # 10 hours
+lightly.life = '10d'  # 10 days
 ```
 
 To check if a key is cached, use the `cached?` method:
@@ -163,27 +160,25 @@ lightly.prune
 If your block returns `false` or `nil`, the data will not be cached:
 
 ```ruby
-result = cache.get 'test' do
+result = lightly.get 'test' do
   false
 end
 
-puts cache.cached? 'test'
+puts lightly.cached? 'test'
 # => false
 ```
 
-Contributing / Support
---------------------------------------------------
-
-If you experience any issue, have a question or a suggestion, or if you wish
-to contribute, feel free to [open an issue][issues].
-
-
-Related Projects
---------------------------------------------------
+## Related Projects
 
 For a similar gem that provides caching specifically for HTTP downloads,
 see the [WebCache gem][webcache].
 
+## Contributing / Support
+
+If you experience any issue, have a question or a suggestion, or if you wish
+to contribute, feel free to [open an issue][issues].
+
+---
 
 [webcache]: https://github.com/DannyBen/webcache
 [issues]: https://github.com/DannyBen/lightly/issues
