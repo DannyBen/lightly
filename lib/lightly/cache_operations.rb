@@ -88,7 +88,7 @@ class Lightly
     end
 
     def expired?(path)
-      expired = life > 0 && File.exist?(path) && Time.now - File.mtime(path) >= life
+      expired = life >= 0 && File.exist?(path) && Time.now - File.mtime(path) >= life
       FileUtils.rm path if expired
       expired
     end
