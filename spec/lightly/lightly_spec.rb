@@ -127,13 +127,13 @@ describe Lightly do
       subject.get('key2') { 'content' }
       expect(subject).to be_cached('key1')
       expect(subject).to be_cached('key2')
-      FileUtils.touch subject.get_path('key1'), mtime: Time.now - 86400
     end
 
     it "deletes all the expired cache files from the cache folder" do
       subject.prune
-      expect(subject).not_to be_cached('key1')
       expect(subject).to be_cached('key2')
+      expect(File).to receive(:mtime).and_return Time.now - 86400
+      expect(subject).not_to be_cached('key1')
     end
   end
 
