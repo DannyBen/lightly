@@ -12,10 +12,10 @@ class Lightly
       @enabled = enabled
     end
 
-    def get(key, &block)
+    def get(key)
       return load key if cached?(key) && enabled?
 
-      content = block.call
+      content = yield
       save key, content if content && enabled?
       content
     end
@@ -47,17 +47,19 @@ class Lightly
 
     def flush
       return false if dir == '/' || dir.empty?
+
       FileUtils.rm_rf dir
     end
 
     def prune
       return false if dir == '/' || dir.empty?
+
       Dir["#{dir}/*"].each { |file| expired? file }
     end
 
     def cached?(key)
       path = get_path key
-      File.exist?(path) and File.size(path) > 0 and !expired?(path)
+      File.exist?(path) and File.size(path).positive? and !expired?(path)
     end
 
     def enable
@@ -76,11 +78,9 @@ class Lightly
     def save(key, content)
       FileUtils.mkdir_p dir
       path = get_path key
-      File.open path, 'wb' do |f| 
-        f.write Marshal.dump content
-      end
+      File.write(path, Marshal.dump(content))
     end
-    
+
   private
 
     def load(key)
@@ -97,13 +97,13 @@ class Lightly
       arg = arg.to_s
 
       case arg[-1]
-      when 's'; arg[0..-1].to_i
-      when 'm'; arg[0..-1].to_i * 60
-      when 'h'; arg[0..-1].to_i * 60 * 60
-      when 'd'; arg[0..-1].to_i * 60 * 60 * 24
-      else;     arg.to_i
+      when 's' then arg[0..].to_i
+      when 'm' then arg[0..].to_i * 60
+      when 'h' then arg[0..].to_i * 60 * 60
+      when 'd' then arg[0..].to_i * 60 * 60 * 24
+      else
+        arg.to_i
       end
     end
-
   end
 end
