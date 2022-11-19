@@ -78,7 +78,7 @@ class Lightly
     def save(key, content)
       FileUtils.mkdir_p dir
       path = get_path key
-      File.write(path, Marshal.dump(content))
+      File.binwrite path, Marshal.dump(content)
     end
 
   private
