@@ -3,33 +3,15 @@ require:
   - rubocop-performance
 
 inherit_gem:
-  rentacop: rentacop.yml
+  rentacop:
+    - rentacop.yml
+    - rspec.yml
 
 AllCops:
   TargetRubyVersion: 2.6.0
   Exclude:
     - 'debug.rb'
     - 'dev/**/*'
-
-# Allow stubbing methods of the subject
-RSpec/SubjectStub:
-  Enabled: false
-
-# Allow using `subject` explicitly
-RSpec/NamedSubject:
-  Enabled: false
-
-# Allow multiple expectations per block
-RSpec/MultipleExpectations:
-  Max: 4
-
-# Prefer `receive` over `have_received` spies
-RSpec/MessageSpies:
-  EnforcedStyle: receive
-
-# Allow `expect` in `before`, since it helps to ensure the state
-RSpec/ExpectInHook:
-  Enabled: false
 
 # Allow `Marshal.load`, since we want to get the Ruby object from cache
 # We assume trusted source for all caching operations
