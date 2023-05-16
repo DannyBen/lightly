@@ -5,3 +5,4 @@ summary "Runfile tasks for building the Lightly gem"
 version Lightly::VERSION
 
 import_gem 'runfile-tasks/gem'
+import 'debug'
