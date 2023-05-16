@@ -9,17 +9,17 @@ describe Lightly do
       expect(subject.life).to eq 3600
       expect(subject.dir).to eq 'cache'
       expect(subject.hash?).to be true
-      expect(subject.permissions).to be nil
+      expect(subject.permissions).to be_nil
     end
 
     context 'with initialization parameters' do
-      subject { described_class.new dir: 'store', life: 120, hash: false, permissions: 0777 }
+      subject { described_class.new dir: 'store', life: 120, hash: false, permissions: 0o777 }
 
       it 'sets properties' do
         expect(subject.life).to eq 120
         expect(subject.dir).to eq 'store'
         expect(subject.hash?).to be false
-        expect(subject.permissions).to eq 0777
+        expect(subject.permissions).to eq 0o777
       end
     end
   end
@@ -163,16 +163,16 @@ describe Lightly do
 
     context 'when permissions are set' do
       before do
-        subject.permissions = 0600
+        subject.permissions = 0o600
         subject.hash = false
         subject.dir = '/tmp'
       end
 
-      let(:file_mode) { File.stat('/tmp/lightly-test-file').mode & 0777 }
+      let(:file_mode) { File.stat('/tmp/lightly-test-file').mode & 0o777 }
 
       it 'sets the file permissions after saving' do
         subject.save('lightly-test-file', 'content')
-        expect(file_mode).to eq 0600
+        expect(file_mode).to eq 0o600
       end
     end
   end
@@ -221,11 +221,11 @@ describe Lightly do
       expect(subject.life).to eq 11 * 60 * 60 * 24
     end
   end
-  
+
   describe '#permissions=' do
     it 'sets file permissions' do
-      subject.permissions = 0600
-      expect(subject.permissions).to eq 0600
+      subject.permissions = 0o600
+      expect(subject.permissions).to eq 0o600
     end
   end
 end
