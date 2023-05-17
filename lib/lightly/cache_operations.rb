@@ -80,10 +80,9 @@ class Lightly
     def save(key, content)
       FileUtils.mkdir_p dir
       path = get_path key
-      File.binwrite path, Marshal.dump(content)
-      return unless permissions
-
-      FileUtils.chmod permissions, path
+      File.open path, 'wb', permissions do |file|
+        file.write Marshal.dump(content)
+      end
     end
 
   private
