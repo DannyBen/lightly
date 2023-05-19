@@ -69,12 +69,14 @@ operation inside the block, and save it to the cache object.
 By default, the cached objects are stored in the `./cache` directory, and
 expire after 60 minutes. The cache directory will be created as needed.
 
-In addition, the provided key is hashed to its MD5 representation.
+In addition, the provided key is hashed to its MD5 representation, and the file
+permissions are optionally set.
 
 You can change these settings on initialization:
 
 ```ruby
-lightly = Lightly.new dir: 'tmp/my_cache', life: 7200, hash: false
+lightly = Lightly.new dir: 'tmp/my_cache', life: 7200,
+  hash: false, permissions: 0o640
 ```
 
 Or later:
@@ -84,6 +86,7 @@ lightly = Lightly.new
 lightly.dir = 'tmp/my_cache'
 lightly.life = '1d'
 lightly.hash = false
+lightly.permissions = 0o640
 ```
 
 The `life` property accepts any of these formats:
