@@ -13,7 +13,11 @@ Gem::Specification.new do |s|
   s.homepage    = 'https://github.com/DannyBen/lightly'
   s.license     = 'MIT'
 
-  s.required_ruby_version = '>= 3.0'
+  s.required_ruby_version = '>= 3.1'
 
-  s.metadata['rubygems_mfa_required'] = 'true'
+  s.metadata = {
+    'bug_tracker_uri'       => 'https://github.com/DannyBen/lightly/issues',
+    'source_code_uri'       => 'https://github.com/DannyBen/lightly',
+    'rubygems_mfa_required' => 'true',
+  }
 end
