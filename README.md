@@ -1,14 +1,6 @@
 # Lightly - Ruby File Cache
 
-[![Gem Version](https://badge.fury.io/rb/lightly.svg)](https://badge.fury.io/rb/lightly)
-[![Build Status](https://github.com/DannyBen/lightly/workflows/Test/badge.svg)](https://github.com/DannyBen/lightly/actions?query=workflow%3ATest)
-[![Maintainability](https://api.codeclimate.com/v1/badges/8296395c9a332a15afc7/maintainability)](https://codeclimate.com/github/DannyBen/lightly/maintainability)
-
----
-
 Lightly is a file cache for performing heavy tasks, lightly.
-
----
 
 ## Install
 
