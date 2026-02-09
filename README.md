@@ -1,5 +1,7 @@
 # Lightly - Ruby File Cache
 
+![repocard](https://repocard.dannyben.com/svg/lightly.svg)
+
 Lightly is a file cache for performing heavy tasks, lightly.
 
 ## Install
